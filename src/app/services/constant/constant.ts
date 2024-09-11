@@ -1,7 +1,7 @@
 export const Constant = {
     API_END_Point:'https://localhost:7110/api/',
     METHODS:{
-        GET_ALL_PRODUCT:'',
-        
+        GET_ALL_PRODUCT:'Item',
+
     }
 }

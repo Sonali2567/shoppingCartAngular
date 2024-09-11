@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component ,OnInit} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from '../../../services/product/product.service';
 
@@ -10,20 +10,35 @@ import { ProductService } from '../../../services/product/product.service';
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit {
+
 isSidePanelVisible:boolean=false;
 productObj:any={
-    "productId": 0,
-    "productName": "",
-    "productPrice": 0,
-    "productDescription": "",
-    "productImageUrl": ""
+    "id": 0,
+    "name": "",
+    "price": 0,
+    "imageUrl": ""
   
 }
 
-constructor(private productSrv:ProductService) {
+productsList:any[]=[];
+
+constructor(public productSrv:ProductService) {
 
  }
+
+ ngOnInit(): void {
+    this.getProducts();
+ }
+
+ getProducts(){
+  this.productSrv.getProducts().subscribe((res:any)=>{
+    
+    this.productsList = res.data;
+  })
+ }
+
+
 
 openSidelPanel(){
   this.isSidePanelVisible=true;

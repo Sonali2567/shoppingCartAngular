@@ -7,7 +7,9 @@ import { Injectable } from '@angular/core';
 export class ProductService {
 
   constructor( private http:HttpClient) {}
-    getAllProducts(){
-      return this.http.get('Constant.API_END_POINT+Constant.METHODS.GET_ALL_PRODUCT');
+    getProducts(){
+      return this.http.get('https://localhost:7110/api/Item');
         }  
+
+    
 }
