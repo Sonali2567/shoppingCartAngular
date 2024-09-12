@@ -1,75 +1,47 @@
+<style>
+  .card-spacing {
+    margin-bottom: 15px; /* Adjust this value as needed */
+  }
+  
+  /* Remove margin from the last card */
+  .row .col-3:last-child {
+    margin-right: 10;
+  }
+</style>
+
 <div class="row">
-    <div [ngClass]="isSidePanelVisible ? 'col-8':'col-12'">
-        <div class="card">
-            <div class="card-header bg-primary">
-                <div class="row">
-                    <div class="col-6">
-                        Products List
-                    </div>
-                    <div class="col-6 text-end">
-                        <button class="btn btn-sm btn-success "(click)="openSidelPanel()">New</button>
-                    </div>
+  <div [ngClass]="isSidePanelVisible ? 'col-8':'col-12'">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-12">
+            <aside aria-label="Second Promo Banner" data-test-id="secondary-global-banner" class="offers" style="background-color: rgb(65, 69, 132);">
+              <section data-link-loc="banner" data-test-id="banner" class="relative flex p-4 pb-5 overflow-hidden bg-[#414584] my-0 mx-[calc(50%-50vw)] hidden empty:hidden mobile:block tablet:block desktop:block">
+                <div class="relative m-auto flex flex-col items-center text-center text-[#ffffff]">
+                  <div class="flex flex-col items-center">
+                    <h4 class="mobile:mt-1 text-sm desktop:text-base font-bold" style="color: white;">EXTRA 10% OFF ON ORDERS ABOVE ₹4499*</h4>
+                  </div>
+                  <h5 class="text-xs mt-1" style="color: white;">Auto-applied at checkout | *Exclusions apply</h5>
                 </div>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-3" *ngFor="let product of productsList">
-                        <div class="card" >
-                            <img class="card-img-top" [src]="product.imageUrl" alt="Card image">
-                            <div class="card-body">
-                              <h4 class="card-title">{{product.name}}</h4>
-                              <p class="card-text">{{product.price}}</p>
-                              <a href="#" class="btn btn-primary">Add to Cart</a>
-                            </div>
-                          </div>   
-                    </div>
-                    
-                </div>
-            </div>
+              </section>
+            </aside>
+          </div>
         </div>
-    </div>
-    <div class="col-4" *ngIf="isSidePanelVisible">
-        <div class="card">
-            <div class="card-header bg-primary">
-                <div class="row">
-                    <div class="col-6">
-                       New Product
-                    </div>
-                    <div class="col-6 text-end">
-                        <button class="btn btn-sm btn-success"(click)="closeSidePanel()">Close</button>
-                    </div>
-                </div>
+      </div>
+      <div class="card-body" style="background-color: rgba(138,115,80,0.3);">
+        <div class="row">
+          <div class="col-3 card-spacing" *ngFor="let product of productsList">
+            <div class="card">
+              <img class="card-img-top" [src]="product.imageUrl" alt="Card image">
+              <div class="card-body">
+                <h4 class="card-title">{{product.name}}</h4>
+                <p class="card-text">price : ₹ {{product.price}}</p>
+                <a href="#" class="btn btn-primary" style="background-color: rgb(75, 78, 92); font-weight: bold">Add to Cart</a>
+              </div>
             </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-6">
-                        <label for="">Name</label> 
-                        <input type="text" [(ngModel)]="productObj.productName"class="form-control">
-                    </div>
-                    <div class="col-6">
-                        <label for="">Price</label> 
-                        <input type="text" [(ngModel)]="productObj.productPrice"class="form-control">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <label for="">Image Url</label> 
-                        <input type="text" [(ngModel)]="productObj.productImageUrl"class="form-control">
-                    </div>
-                    <div class="col-12">
-                        <label for="">Product Description</label> 
-                        <textarea rows="4" class="form-control" [(ngModel)]="productObj.productDescription"></textarea>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                       <button class="btn btn-success">Reset</button>
-                    </div>
-                    <div class="col-6">
-                        <button class="btn btn-success">Create Product</button>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>

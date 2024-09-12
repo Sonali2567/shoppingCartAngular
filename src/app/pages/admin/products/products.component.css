@@ -1,0 +1,28 @@
+.offers{
+    text-size-adjust: 100%;
+    tab-size: 4;
+    font-family: FFDINforPuma, Inter, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: inherit;
+    font-kerning: normal;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizelegibility;
+    --tw-text-opacity: 1;
+    color: rgba(25,25,25,var(--tw-text-opacity));
+    --tw-bg-opacity: 1;
+    visibility: visible;
+    --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: rgba(140,145,152,var(--tw-ring-opacity,1));
+    --tw-ring-offset-shadow: 0 0 transparent;
+    --tw-ring-shadow: 0 0 transparent;
+    box-sizing: border-box;
+    border: 0px solid rgb(229, 231, 235);
+    --tw-shadow: 0 0 transparent;
+    outline: none !important;
+}
+.offers section {
+    height: 100px; /* Adjust this value as needed */
+    padding: 1rem; /* Adjust padding to reduce height */
+}
+

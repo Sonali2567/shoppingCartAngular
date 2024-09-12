@@ -33,8 +33,8 @@ constructor(public productSrv:ProductService) {
 
  getProducts(){
   this.productSrv.getProducts().subscribe((res:any)=>{
-    
-    this.productsList = res.data;
+    console.log("this is res",res);
+    this.productsList = res;
   })
  }
 

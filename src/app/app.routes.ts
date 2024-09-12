@@ -6,7 +6,7 @@ import { ProductsComponent } from './pages/admin/products/products.component';
 export const routes: Routes = [
     {
         path: '',
-        redirectTo:'login',
+        redirectTo:'products',
         pathMatch: 'full'
     },
     {
