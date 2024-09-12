@@ -22,7 +22,14 @@
     outline: none !important;
 }
 .offers section {
-    height: 100px; /* Adjust this value as needed */
-    padding: 1rem; /* Adjust padding to reduce height */
+    height: 100px; 
+    padding: 1rem; 
 }
 
+.card-spacing {
+    margin-bottom: 15px; 
+  }
+  
+  .row .col-3:last-child {
+    margin-right: 10;
+  }

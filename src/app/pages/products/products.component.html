@@ -1,16 +1,5 @@
-<style>
-  .card-spacing {
-    margin-bottom: 15px; /* Adjust this value as needed */
-  }
-  
-  /* Remove margin from the last card */
-  .row .col-3:last-child {
-    margin-right: 10;
-  }
-</style>
 
 <div class="row">
-  <div [ngClass]="isSidePanelVisible ? 'col-8':'col-12'">
     <div class="card">
       <div class="card-header">
         <div class="row">
@@ -25,7 +14,6 @@
                 </div>
               </section>
             </aside>
-          </div>
         </div>
       </div>
       <div class="card-body" style="background-color: rgba(138,115,80,0.3);">
