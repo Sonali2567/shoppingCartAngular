@@ -1,1 +1,59 @@
-<p>cart works!</p>
+
+<ng-container *ngIf="products.length>0">
+   <div class="container">
+    <div class="card-table">
+        <div class="cart-product">
+            <table class="table table-hover , text-center">
+                <thead>
+                    <tr>
+                        <th >Sr.No</th>
+                        <th >Product Name</th>
+                        <th >Product Image</th>
+                        <th >Product Price</th>
+                        <th >Quantity</th>
+                        <th >Total</th>
+                        <th >Remove</th>
+                    </tr>
+                </thead>
+             <tbody>
+                    <tr *ngFor="let product of products;let i=index">
+                        <td >{{i+1}}</td>
+                        <td>{{product.name}}</td>
+                        <td><img src="{{product.imageUrl}}" style="height: 100px; width: 100px;"></td>
+                        <td>₹ {{product.price}}</td>
+                        <td>    <input type="number" [(ngModel)]="product.quantity" (ngModelChange)="updateQuantity(product, $event)" min="1" />
+
+
+                        </td>
+                        <td>₹ {{product.total}}</td>
+                        <td><button (click)="removeCartItem(product)" class="btn btn-primary" style="background-color: rgb(75, 78, 92); font-weight: bold">
+                            <i class="fas fa-trash-alt"></i></button></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="4" ></td>
+                        <td><button class="btn btn-primary" style="background-color: rgb(75, 78, 92); font-weight: bold" (click)="emptycart()">Empty Cart</button> </td>
+                        <td><button routerLink="/products" class="btn btn-primary" style="background-color: rgb(75, 78, 92); font-weight: bold">Shop More</button> </td>
+                      
+                        <td style="font-size: 20px;"><strong>Total: {{grandTotal}}</strong></td>
+                    </tr>
+                </tbody>
+                </table>
+        </div>
+        </div>
+        </div>
+   </ng-container>
+   
+<ng-container *ngIf="products.length==0">
+    <div class="container">
+        <div class="card">
+            <h5 class="card-header"> MyCart</h5>
+        </div>
+        <div class="center">
+            <img src="assets/images/add-cart.png "style="height: 150px;width: 150px;"alt="Card image">
+            <h4>Your Cart is empty!</h4>
+            <h6>Click on the add to cart button to add items to your cart</h6>
+            <button  routerLink="/products" class="btn btn-primary" style="background-color: rgb(75, 78, 92); font-weight: bold">Proceed to Checkout</button>
+        </div>
+        </div>
+</ng-container>

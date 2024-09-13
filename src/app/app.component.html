@@ -11,7 +11,7 @@
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" ><img src="assets/images/logo.png" alt="logo" style="height: 40px; width: 50px;"></a>
+    <a class="navbar-brand" ><img src="assets/images/logo.png" alt="logo" style="height: 60px; width: 60px;"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -23,18 +23,14 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/products" style="color: white; font-weight: 600; font-size: large;">Products</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link"style="color: white; font-weight: 600; font-size: large;" >About Us</a>
-        </li>
-       <!-- <li class="nav-item">
-          <a class="nav-link"style="color: white; font-weight: 600; font-size: large;"><img src="assets/images/location.png"style="height=20px; width: 20px;">&nbsp;Deleiver To India</a>
-        </li>-->
       </ul>
       <form class="d-flex">
-       <!-- <input class="form-control me-2" type="text" placeholder="Search">-->
-       <!-- <button class="btn btn-primary" type="button">Search</button>-->
-       <a class="nav-link"routerLink="/login" style="color: white; font-weight: 600; font-size: large; align-self: center;" >Login</a>&nbsp;&nbsp;&nbsp;&nbsp;
-       <a class="nav-link"><img src="assets/images/CART.png"style="height=45px; width: 45px;"></a>
+
+        <a class="nav-link" routerLink="/cart">
+          <i style="font-size: 30px; color: white" class="fas fa-cart-plus"></i>
+          <div class="badge" style="font-size:10px;color: white; background-color: rgb(138,115,80,0.9);">{{ totalItem }}</div>
+        </a>
+        
       </form>
     </div>
   </div>
