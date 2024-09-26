@@ -1,45 +1,41 @@
-
 <div class="row">
-    <div class="card">
+  <div class="card">
       <div class="card-header">
-        <div class="row">
-          <div class="col-12">
-            <aside aria-label="Second Promo Banner" data-test-id="secondary-global-banner" class="offers" style="background-color: rgb(65, 69, 132);">
-              <section data-link-loc="banner" data-test-id="banner" class="relative flex p-4 pb-5 overflow-hidden bg-[#414584] my-0 mx-[calc(50%-50vw)] hidden empty:hidden mobile:block tablet:block desktop:block">
-                <div class="relative m-auto flex flex-col items-center text-center text-[#ffffff]">
-                  <div class="flex flex-col items-center">
-                    <h4 class="mobile:mt-1 text-sm desktop:text-base font-bold" style="color: white;">EXTRA 10% OFF ON ORDERS ABOVE ₹4499*</h4>
-                  </div>
-                  <h5 class="text-xs mt-1" style="color: white;">Auto-applied at checkout | *Exclusions apply</h5>
-                </div>
-              </section>
-            </aside>
-        </div>
-      </div>
-      <div class="card-body" style="background-color: rgba(138,115,80,0.3);">
-        <div class="row">
-          <div class="col-3 card-spacing" *ngFor="let product of productsList">
-            <div class="card">
-              <img class="card-img-top" [src]="product.imageUrl" alt="Card image">
-              <div class="card-body">
-                <h4 class="card-title">{{product.name}}</h4>
-                <p class="card-text">price : ₹ {{product.price}}</p>
-                <button class="btn btn-primary add-to-cart-button"
-                style="background-color: rgb(75, 78, 92); font-weight: bold; color: white;"
-                (click)="addtocart(product)">Add to Cart</button>         
-                <div class="toast-container position-fixed top-0 end-0 p-3" id="toastPlacement">
-                  <div id="cart-toast" class="toast bg-dark text-light border-0 shadow-sm" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-body fw-bold">
-                      <strong style="color: rgb(193, 193, 97)">{{ productName }}</strong> <br>has been added to your cart!
-                    </div>
-                  </div>
-                </div>
-                
+          <div class="row">
+              <div class="col-12">
+                  <aside aria-label="Second Promo Banner" data-test-id="secondary-global-banner" class="offers">
+                      <section data-link-loc="banner" data-test-id="banner" class="promo-banner">
+                          <div class="promo-content">
+                              <div class="flex flex-col items-center">
+                                  <h4 class="promo-title">EXTRA 10% OFF ON ORDERS ABOVE ₹4499*</h4>
+                              </div>
+                              <h5 class="promo-subtitle">Auto-applied at checkout | *Exclusions apply</h5>
+                          </div>
+                      </section>
+                  </aside>
               </div>
-            </div>
           </div>
-        </div>
       </div>
-    </div>
+      <div class="card-body">
+          <div class="row">
+              <div class="col-3 card-spacing" *ngFor="let product of productsList">
+                  <div class="card">
+                      <img class="card-img-top" [src]="product.imageUrl" alt="Card image">
+                      <div class="card-body">
+                          <h4 class="card-title">{{product.name}}</h4>
+                          <p class="card-text">Price: ₹ {{product.price}}</p>
+                          <button class="btn btn-primary add-to-cart-button" (click)="addtocart(product)">Add to Cart</button>
+                          <div class="toast-container position-fixed top-0 end-0 p-3" id="toastPlacement">
+                              <div id="cart-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                                  <div class="toast-body">
+                                      <strong>{{ productName }}</strong> <br>has been added to your cart!
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
   </div>
 </div>

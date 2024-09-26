@@ -59,14 +59,25 @@ export class CartService {
     this.cartItemList.map((a: any) => {
       
       grandTotal += a.total;
-      if(grandTotal>4499){
-        grandTotal = grandTotal-(grandTotal*0.1);
-        grandTotal = parseFloat(grandTotal.toFixed(2));
-    }
     });
     return grandTotal;
   }
 
+  getDiscountedPrice(): number {
+    let grandTotal = 0;
+    let discountedTotal = 0;
+    this.cartItemList.map((a: any) => {
+      
+      grandTotal += a.total;
+      discountedTotal=grandTotal;
+      if(discountedTotal>4499){
+        discountedTotal = discountedTotal-(discountedTotal*0.1);
+        discountedTotal= parseFloat(discountedTotal.toFixed(2));
+    }
+    });
+    return discountedTotal;
+  }
+  
   removeCartItem(product: any) {
     this.cartItemList = this.cartItemList.filter(item => item.id !== product.id);
     this.productsList.next(this.cartItemList);

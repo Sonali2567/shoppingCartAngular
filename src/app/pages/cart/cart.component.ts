@@ -14,11 +14,13 @@ import { FormsModule } from '@angular/forms';
 export class CartComponent implements OnInit {
   public products: any[] = [];
   public grandTotal !: number;
+  public discountedTotal !: number;
   constructor(private cartService:CartService) { } 
   ngOnInit(): void {
     this.cartService.getProducts().subscribe((res:any[])=>{
       this.products=res;
       this.grandTotal=this.cartService.getTotalPrice();
+      this.discountedTotal=this.cartService.getDiscountedPrice();
     })
   }
 removeCartItem(product:any){
