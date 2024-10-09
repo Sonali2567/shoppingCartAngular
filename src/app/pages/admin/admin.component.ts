@@ -15,10 +15,10 @@ export class AdminComponent implements OnInit {
   isSidePanelVisible: boolean = false;
 
   productObj: any = {
-    id: 0,
+   // id: 0,
     name: "",
     price: 0,
-    imageFile: "", // You can keep this if you plan to use it for displaying the image later
+  //  imageFile: "", // You can keep this if you plan to use it for displaying the image later
     quantity: 0,
     description: ""
   };
@@ -38,33 +38,44 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  onFileSelected(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-        this.selectedFile = input.files[0]; // Get the first selected file
-    } else {
-        this.selectedFile = null; // No file selected
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+        this.selectedFile = file;
     }
 }
 
 
 onSave() {
-  if (this.selectedFile) { // Ensure a file is selected
-      this.productService.saveProduct(this.productObj, this.selectedFile).subscribe((res: any) => {
+  // Call the save method with the selected file
+  this.productService.saveProduct(this.productObj, this.selectedFile).subscribe({
+      next: (res: any) => {
           if (res.result) {
               alert("Product added Successfully");
               this.getProducts(); // Refresh the product list
+              this.resetForm(); // Reset the form after saving
           } else {
               alert(res.message);
           }
-      }, error => {
+      },
+      error: (error: any) => {
           console.error("Error adding product:", error); // Log the error
           alert("An error occurred while adding the product.");
-      });
-  } else {
-      alert("Please select an image file to upload.");
-  }
+      },
+      complete: () => {
+          console.log("Product save request completed."); // Optional completion callback
+      }
+  });
 }
+
+onUpdate(product: any) {
+  this.productObj=product;
+  this.openSidePanel();
+}
+
+onDelete(product: any) {
+}
+
 
 
   openSidePanel() {
@@ -77,10 +88,10 @@ onSave() {
 
   private resetForm() {
     this.productObj = {
-      id: 0,
+     // id: 0,
       name: "",
       price: 0,
-      imageFile: "",
+    //  imageFile: "",
       quantity: 0,
       description: ""
     };

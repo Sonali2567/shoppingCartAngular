@@ -13,16 +13,20 @@ export class ProductService {
     return this.http.get(Constant.API_END_Point + Constant.METHODS.GET_ALL_PRODUCT);
   }
 
-  saveProduct(product: any, file: File) {
+  saveProduct(product: any, file: File | null) {
     const formData: FormData = new FormData();
-   // formData.append('id', product.id.toString());
     formData.append('name', product.name);
     formData.append('price', product.price.toString());
     formData.append('quantity', product.quantity.toString());
     formData.append('description', product.description);
-    formData.append('imageFile', file, file.name);  // Append the image file
-  
+
+    // Append the selected file to the FormData
+    if (file) {
+        formData.append('imageFile', file, file.name);
+    }
+
     return this.http.post(Constant.API_END_Point + Constant.METHODS.CREATE_PRODUCT, formData);
-  }
-  
+}
+
+
 }
