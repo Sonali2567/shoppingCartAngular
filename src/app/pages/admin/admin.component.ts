@@ -8,23 +8,22 @@ import { ProductService } from '../../services/product/product.service';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css'], // Corrected 'styleUrl' to 'styleUrls'
+  styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent implements OnInit {
 
   isSidePanelVisible: boolean = false;
 
   productObj: any = {
-   // id: 0,
+    id: 0,  // Include the product ID for update functionality
     name: "",
     price: 0,
-  //  imageFile: "", // You can keep this if you plan to use it for displaying the image later
     quantity: 0,
     description: ""
   };
 
   productsList: any[] = [];
-  selectedFile: File | null = null; // New property to hold the selected file
+  selectedFile: File | null = null;
 
   constructor(private productService: ProductService) {}
 
@@ -41,42 +40,71 @@ export class AdminComponent implements OnInit {
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
-        this.selectedFile = file;
+      this.selectedFile = file;
     }
-}
+  }
 
-
-onSave() {
-  // Call the save method with the selected file
-  this.productService.saveProduct(this.productObj, this.selectedFile).subscribe({
-      next: (res: any) => {
+  onSave() {
+    if (this.productObj.id) {
+      // Update existing product
+      this.productService.updateProduct(this.productObj, this.selectedFile).subscribe({
+        next: (res: any) => {
           if (res.result) {
-              alert("Product added Successfully");
-              this.getProducts(); // Refresh the product list
-              this.resetForm(); // Reset the form after saving
+            alert("Product updated successfully");
+            this.getProducts(); // Refresh the product list
+            this.resetForm(); // Reset form after update
           } else {
-              alert(res.message);
+            alert(res.message);
           }
-      },
-      error: (error: any) => {
-          console.error("Error adding product:", error); // Log the error
+        },
+        error: (error: any) => {
+          console.error("Error updating product:", error);
+          alert("An error occurred while updating the product.");
+        }
+      });
+    } else {
+      // Save new product
+      this.productService.saveProduct(this.productObj, this.selectedFile).subscribe({
+        next: (res: any) => {
+          if (res.result) {
+            alert("Product added successfully");
+            this.getProducts(); // Refresh the product list
+            this.resetForm(); // Reset form after adding
+          } else {
+            alert(res.message);
+          }
+        },
+        error: (error: any) => {
+          console.error("Error adding product:", error);
           alert("An error occurred while adding the product.");
-      },
-      complete: () => {
-          console.log("Product save request completed."); // Optional completion callback
-      }
-  });
-}
+        }
+      });
+    }
+  }
 
-onUpdate(product: any) {
-  this.productObj=product;
-  this.openSidePanel();
-}
+  onUpdate(product: any) {
+    this.productObj = { ...product };  // Copy product details for editing
+    this.openSidePanel();
+  }
 
-onDelete(product: any) {
-}
-
-
+  onDelete(product: any) {
+    if (confirm('Are you sure you want to delete this product?')) {
+      this.productService.deleteProduct(product.id).subscribe({
+        next: (res: any) => {
+          if (res.result) {
+            alert("Product deleted successfully");
+            this.getProducts(); // Refresh the product list after deletion
+          } else {
+            alert(res.message);
+          }
+        },
+        error: (error: any) => {
+          console.error("Error deleting product:", error);
+          alert("An error occurred while deleting the product.");
+        }
+      });
+    }
+  }
 
   openSidePanel() {
     this.isSidePanelVisible = true;
@@ -84,17 +112,17 @@ onDelete(product: any) {
 
   closeSidePanel() {
     this.isSidePanelVisible = false;
+    this.resetForm();  // Reset form when closing the panel
   }
 
   private resetForm() {
     this.productObj = {
-     // id: 0,
+      id: 0,
       name: "",
       price: 0,
-    //  imageFile: "",
       quantity: 0,
       description: ""
     };
-   // Reset selected file
+    this.selectedFile = null;
   }
 }

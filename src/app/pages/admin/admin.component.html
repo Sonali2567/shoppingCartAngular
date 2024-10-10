@@ -76,11 +76,14 @@
                 </div>
                <br>
                 <div class="row">
+                  <div class="row">
                     <div class="col-6">
-                        <button class="btn btn-primary"  (click)="onSave()" style="background-color: #414584; color: aliceblue; width: 14cqmax;">Add Product</button>
-                    <!--  <button class="btn btn-primary" *ngIf="productObj.id !=0" (click)="onSave()" style="background-color: #414584; color: aliceblue; width: 14cqmax;">Update Product</button>-->
+                        <button class="btn btn-primary" (click)="onSave()"
+                            style="background-color: #414584; color: aliceblue; width: 14cqmax;">
+                            {{productObj.id ? 'Update Product' : 'Add Product'}}
+                        </button>
                     </div>
-                   
+                  </div>
                 </div>
             </div>
         </div>
